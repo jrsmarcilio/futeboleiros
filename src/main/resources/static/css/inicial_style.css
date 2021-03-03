@@ -1,0 +1,265 @@
+@charset "ISO-8859-1";
+
+body, h1, h2, p, ul, li, a {
+	margin: 0px;
+	padding: 0px;
+}
+
+body {
+	font-family: 'Poppins', sans-serif;
+	color: #222222;
+	/* 	background-color: rgb(240, 240, 240); */
+	background-color: #004080;
+}
+
+li {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+img {
+	display: block;
+	max-width: 100%;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+/*Menu*/
+.menu {
+	max-width: 960px;
+	margin: 0 auto;
+	padding: 15px 0;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.menu a {
+	color: #333333;
+	text-decoration: none;
+}
+
+.menu-logo {
+	height: 116px;
+	width: 112px;
+	margin-top: 0 10px;
+}
+
+.menu-nav ul {
+	display: flex;
+	flex-wrap: wrap;
+	margin-top: 10px;
+}
+
+.menu-nav ul li {
+	margin-left: 5px;
+}
+
+.menu-nav a {
+	font-size: 1.45em;
+	display: block;
+	padding: 10px;
+}
+
+.menu-nav a:hover {
+	background-color: #336633;
+	color: white;
+}
+
+.efeito-li {
+	border: none;
+	padding: 20px;
+	margin: 10px;
+	font-size: 24px;
+	line-height: 24px;
+	border-radius: 60px;
+	position: relative;
+	box-sizing: border-box;
+	cursor: pointer;
+	transition: all 40ms ease;
+}
+
+.efeito-li:before {
+	content: "";
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 0px;
+	height: 44px;
+	background: rgba(255, 255, 255, 0.3);
+	border-radius: 60px;
+	transition: all 2s ease;
+}
+
+.efeito-li:hover:before {
+	width: 100%;
+}
+
+/* Efeitos de Butões */
+.btns {
+	text-align: center;
+	margin-top: 15px;
+}
+
+.btn-largo {
+	width: 159px;
+	color: white;
+}
+
+.efeito {
+	border: none;
+	color: #ffffff;
+	padding: 20px;
+	margin: 10px;
+	font-size: 24px;
+	line-height: 24px;
+	border-radius: 60px;
+	position: relative;
+	box-sizing: border-box;
+	cursor: pointer;
+	transition: all 40ms ease;
+}
+
+.efeito-1 {
+	background-color: #336633;
+}
+
+.efeito-1:before {
+	content: "";
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 0px;
+	height: 64px;
+	background: rgba(255, 255, 255, 0.3);
+	border-radius: 50px;
+	transition: all 2s ease;
+}
+
+.efeito-1:hover:before {
+	width: 100%;
+}
+
+/*Introdução*/
+.intro span {
+	color: #336633;
+	margin-top: 15px;
+}
+
+.intro h5 {
+	font-size: 1.99rem;
+	line-height: 1;
+	max-width: 960px;
+	margin: 0 auto;
+	margin: 40px 0px 0px 20px;
+	text-align: left;
+	line-height: 1.5;
+}
+
+.intro form {
+	/* Página de Time */
+	margin: 50px 0px 0px 35px;
+}
+
+.intro-1 {
+	font-size: 4.99rem;
+	line-height: 1;
+	max-width: 960px;
+	margin: 0 auto;
+	margin: 140px 0px 0px 20px;
+	padding: 10px;
+	text-align: left;
+	font-family: Impact, Haettenschweiler, Franklin Gothic Bold, Charcoal,
+		Helvetica Inserat, Bitstream Vera Sans Bold, Arial Black, sans serif;
+}
+
+.btn-reg {
+	margin-top: 60px;
+	margin-right: 95px;
+}
+
+/* Pagina de Login */
+.main-head {
+	height: 150px;
+	background: #FFF;
+}
+
+.sidenav {
+	height: 100%;
+	background-color: #000;
+	overflow-x: hidden;
+	padding-top: 20px;
+}
+
+.main {
+	padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+	.sidenav {
+		padding-top: 15px;
+	}
+}
+
+@media screen and (max-width: 450px) {
+	.login-form {
+		margin-top: 10%;
+	}
+	.register-form {
+		margin-top: 10%;
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.main {
+		margin-left: 40%;
+	}
+	.sidenav {
+		width: 40%;
+		position: fixed;
+		z-index: 1;
+		top: 0;
+		left: 0;
+	}
+	.login-form {
+		margin-top: 80%;
+	}
+	.register-form {
+		margin-top: 20%;
+	}
+}
+
+.login-main-text {
+	margin-top: 20%;
+	padding: 60px;
+	color: #fff;
+}
+
+.login-main-text h2 {
+	font-weight: 300;
+}
+
+.btn-black {
+	background-color: #000 !important;
+	color: #fff;
+}
+/* Pagina de Login */
+.footer {
+	display: flex;
+	height: 200px;
+	background: #2c70ff;
+	align-items: center;
+}
+
+.footer p {
+	flex: 1;
+	text-align: center;
+	font-size: 2.25em;
+	color: #122ab2;
+}

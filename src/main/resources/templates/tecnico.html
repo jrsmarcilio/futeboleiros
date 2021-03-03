@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF8">
+<title>Cadastrar Técnico - Fut1x1</title>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/inicial_style.css">
+</head>
+<body
+	th:style="'width:1900px; heigth: 1069px; background: url(/img/4950071.jpg) no-repeat center center fixed'">
+	<div class="container">
+		<header class="menu-bg">
+			<div class="menu">
+				<div class="menu-logo btns">
+					<a href="#"><img src="/img/logo.png"></a>
+				</div>
+				<nav class="navbar navbar-light menu-nav">
+					<ul>
+						<li><a class="nav-link efeito-li" href="/time">TIMES</a></li>
+						<li><a class="nav-link efeito-li" href="/tecnico">TÉCNICO</a></li>
+						<li><a class="nav-link efeito-li" href="/jogador">JOGADORES</a></li>
+						<li><a class="nav-link efeito-li" href="/apostas">APOSTAS</a></li>
+					</ul>
+				</nav>
+				<a href="/login">
+				<button type="button" class="efeito efeito-1 btn-largo negado">Login</button></a>
+			</div>
+		</header>
+	</div>
+	<div class="container-fluid" style="margin-left: 14px;">
+		<div class="float-sm-left intro">
+			<h1 class="intro-1">Cadastro de Técnicos para</h1>
+			<span class="intro-1">Campeonato 1VS1</span>
+
+			<form action="/save_tecnico" method="POST" th:object="${tecnico}">
+				<input type="hidden" th:field=*{id}>
+				<div
+				th:text="${mensagem}" th:if="${mensagem != null}" 
+				class="alert alert-danger" role="alert" ></div>
+				<div class="form-row align-items-center">
+					
+					<div class="col-sm-3 my-1">
+						<label
+							class="mr-sm-2"
+							for="inlineFormInputName">Nome do Técnico
+						</label>
+						<input
+							type="text" th:field="*{nome}"
+							class="form-control" id="inlineFormInputName"
+							placeholder="Tite" required="required">
+					</div>
+
+					<div class="col-sm-3 my-1">
+						<label
+							class="mr-sm-2"
+							for="inlineFormCustomSelect">Data de Nascimento
+						</label>
+						<input type="date" class="form-control"
+							id="inlineFormInputName" th:field="*{dataNascimento}" required="required">
+					</div>
+
+					<div class="col-sm-3 my-1">
+						<label
+							class="mr-sm-2"
+							for="inlineFormCustomSelect">Salário
+						</label>
+						<input type="text" class="form-control"
+						id="inlineFormInputName" th:field="*{salario}" required="required">
+					</div>
+
+					<button
+						type="submit"
+						class="efeito efeito-1 btn-largo btn-reg">Cadastrar
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF8">
+<title>Página Inicial - Fut1x1</title>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+
+<link
+	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+<script
+	src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<!------ Include the above in your HEAD tag ---------->
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg">
+		<div>
+			<ul class="navbar-nav">
+				<li class="active"><a href="/" class="nav-link">Home</a></li>
+				<li class="nav-item"><a href="/time" class="nav-link">Times</a></li>
+				<li class="nav-item"><a href="/tecnico" class="nav-link">Técnicos</a></li>
+				<li class="nav-item"><a href="/jogador" class="nav-link">Jogadores</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<br>
+	<div class="container">
+		<div class="row col-md-6 col-md-offset-2 custyle">
+			<table class="table table-striped custab">
+				<thead>
+					<h1>Lista de equipes inscritas</h1>
+					<a href="/time" class="btn btn-primary btn-xs pull-right"><b>+</b>
+						Adcionar time </a>
+					<a href="/tecnico" class="btn btn-primary btn-xs pull-right"
+						style="margin-left: 50px"><b>+</b> Adcionar Técnico </a>
+					<a href="/jogador" class="btn btn-primary btn-xs pull-right"
+						style="margin-left: 50px"><b>+</b> Adcionar Jogador </a>
+
+					<tr>
+						<th>ID</th>
+						<th>Nome</th>
+						<th>Estado</th>
+						<th>Técnico</th>
+						<th class="text-center">Ações</th>
+					</tr>
+				</thead>
+				<tr th:each="time : ${lista_times}">
+					<td th:text="${time.id}"></td>
+					<td th:text="${time.nome}"></td>
+					<td th:text="${time.uf}"></td>
+					<td th:text="${time.tecnico.nome}"></td>
+					<td class="text-center"><a class='btn btn-info btn-xs'
+						th:href="'/edit_time?id=' + ${time.id}"> <span
+							class="glyphicon glyphicon-edit"></span> Editar
+					</a> <a th:href="'/del_time?id=' + ${time.id}"
+						class="btn btn-danger btn-xs"> <span
+							class="glyphicon glyphicon-remove"></span> Apagar
+					</a></td>
+				</tr>
+			</table>
+
+			<br>
+			<table class="table table-striped custab">
+				<thead>
+					<h1>Lista de jogadores inscritos</h1>
+
+					<!-- Pesquisa de Jogador -->
+
+					<div class="container">
+						<div class="row">
+
+							<form method="POST" action="/find">
+
+								<input type="radio" id="r_nome" name="pesquisa" value="1">
+								<label for="r_nome" style="margin-left: 5px; margin-top: 5px;">Pesquisa
+									por Nome</label> <input type="radio" id="r_time" name="pesquisa"
+									value="2" style="margin-left: 25px"> <label
+									for="r_time" style="margin-left: 5px; margin-top: 5px;">
+									Pesquisa por Time</label>
+
+								<div id="custom-search-input">
+									<div class="input-group col-md-12">
+
+										<input type="text" class="  search-query form-control"
+											placeholder="Search" name="nome" /> <span
+											class="input-group-btn">
+											<button class="btn btn-danger" type="submit">
+												<span class=" glyphicon glyphicon-search"></span>
+											</button>
+										</span>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+
+					<!-- Fechando pesquisa -->
+
+					<tr>
+						<th>ID</th>
+						<th>Nome</th>
+						<th>Nascimento</th>
+						<th>Salário</th>
+						<th>Time</th>
+						<th class="text-center">Ações</th>
+					</tr>
+				</thead>
+				<tr th:each="jog : ${lista_jogs}">
+					<td th:text="${jog.id}"></td>
+					<td th:text="${jog.nome}"></td>
+					<td th:text="${jog.dataNascimento}"></td>
+					<td th:text="${'R$ ' + jog.salario}"></td>
+					<td th:text="${jog.time.nome}"></td>
+					<td class="text-center"><a class='btn btn-info btn-xs'
+						th:href="'/edit_jogador?id=' + ${jog.id}"> <span
+							class="glyphicon glyphicon-edit"></span> Editar
+					</a> <a th:href="'/del_jogador?id=' + ${jog.id}"
+						class="btn btn-danger btn-xs"> <span
+							class="glyphicon glyphicon-remove"></span> Apagar
+					</a></td>
+				</tr>
+			</table>
+
+			<br>
+			<table class="table table-striped custab">
+				<thead>
+					<h1>Lista de técnicos inscritos</h1>
+					<a href="/time" class="btn btn-primary btn-xs pull-right"><b>+</b>
+						Adcionar time </a>
+					<a href="/tecnico" class="btn btn-primary btn-xs pull-right"
+						style="margin-left: 10px"><b>+</b> Adcionar Técnico </a>
+					<a href="/jogador" class="btn btn-primary btn-xs pull-right"
+						style="margin-left: 10px"><b>+</b> Adcionar Jogador </a>
+					<tr>
+						<th>ID</th>
+						<th>Nome</th>
+						<th>Nascimento</th>
+						<th>Salário</th>
+						<th class="text-center">Ações</th>
+					</tr>
+				</thead>
+				<tr th:each="tec : ${lista_tecs}">
+					<td th:text="${tec.id}"></td>
+					<td th:text="${tec.nome}"></td>
+					<td th:text="${tec.dataNascimento}"></td>
+					<td th:text="${'R$ ' + tec.salario}"></td>
+					<td class="text-center"><a class='btn btn-info btn-xs'
+						th:href="'/edit_tecnico?id=' + ${tec.id}"> <span
+							class="glyphicon glyphicon-edit"></span> Editar
+					</a> <a th:href="'/del_tecnico?id=' + ${tec.id}"
+						class="btn btn-danger btn-xs"> <span
+							class="glyphicon glyphicon-remove"></span> Apagar
+					</a></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+</body>
+</html>

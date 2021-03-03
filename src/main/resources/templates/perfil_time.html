@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF8">
+<title>Perfil Principal - ${Time}</title>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+
+<link
+	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+<script
+	src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<!------ Include the above in your HEAD tag ---------->
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg">
+		<div>
+			<ul class="navbar-nav">
+				<li class="active"><a href="/" class="nav-link">Home</a></li>
+				<li class="nav-item"><a href="/time" class="nav-link">Times</a></li>
+				<li class="nav-item"><a href="/tecnico" class="nav-link">Técnicos</a></li>
+				<li class="nav-item"><a href="/jogador" class="nav-link">Jogadores</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<br>
+	<div class="container">
+		<div class="row col-md-6 col-md-offset-2 custyle">
+			<table class="table table-striped custab">
+				<thead>
+					<h1>Lista de inscrição das equipes</h1>
+					<a href="/time" class="btn btn-primary btn-xs pull-right"><b>+</b>
+						Adcionar time
+					</a>
+					<a href="/tecnico" class="btn btn-primary btn-xs pull-right" style="margin-left: 10px"><b>+</b>
+						Adcionar Técnico
+					</a>
+					<a href="/jogador" class="btn btn-primary btn-xs pull-right" style="margin-left: 10px"><b>+</b>
+						Adcionar Jogador
+					</a>
+					<tr>
+						<th>ID</th>
+						<th>Nome</th>
+						<th>Estado</th>
+						<th>Técnico</th>
+						<th class="text-center">Ações</th>
+					</tr>
+				</thead>
+				<tr th:each="time : ${lista_times}">
+					<td th:text="${time.id}"></td>
+					<td th:text="${time.nome}"></td>
+					<td th:text="${time.uf}"></td>
+					<td th:text="${time.tecnico.nome}"></td>
+					<td class="text-center">
+						<a class='btn btn-info btn-xs' href="#">
+							<span class="glyphicon glyphicon-edit"></span> Editar
+						</a>
+						<a href="#" class="btn btn-danger btn-xs">
+							<span class="glyphicon glyphicon-remove"></span> Apagar
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+</body>
+</html>
