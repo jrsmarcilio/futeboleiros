@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/css/index.css">
+<!--Material icons-->
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+<!--Fonts-->
+<title>Futeboleiros | Fragmentos</title>
+</head>
+<body>
+	
+	<!-- Background -->
+	<div class="background" th:fragment="background">
+		<img src="/img/landing.png" alt="pernas de um jogador de futebol" class="bg-landingpage">
+		<div class="green-ball"></div>
+		<div class="x1"></div>
+		<div class="x2"></div>
+		<div class="x3"></div>
+		<div class="x"></div>
+	</div>
+
+	<!-- Cabeçalho -->
+	<header th:fragment="cabecalho">
+		<img src="/img/logo.png" alt="" class="logo" />
+		<div id="menu-toggle">
+			<div class="line line1"></div>
+			<div class="line line2"></div>
+			<div class="line line3"></div>
+		</div>
+		<div class="items-container" id="sidebar">
+			<ul>
+				<li><a class="item" th:href="@{times}">TIMES</a></li>
+				<li><a class="item" th:href="@{tecnicos}">TÉCNICOS</a></li>
+				<li><a class="item" th:href="@{jogadores}">JOGADORES</a></li>
+				<li><a class="item" th:href="@{apostas}">APOSTAS</a></li>
+				<li><a th:href="@{login}" class="login-button">LOGIN</a></li>
+				<li>
+					<ul id="mobile-icons">
+						<li><a href="#"><img src="/img/svg/facebook.svg" class="icon" alt=""></a></li>
+						<li><a href="#"><img src="/img/svg/instagram.svg" class="icon" alt=""></a></li>
+						<li><a href="#"><img src="/img/svg/twitter.svg" class="icon" alt=""></a></li>
+						<li><a href="#"><img src="/src/svg/youtube.svg" class="icon" alt=""></a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</header>
+
+	<!-- Cabeçalho - Home -->
+	<header th:fragment="cabecalho-home">
+		<a th:href="@{home}">
+		<img src="/img/logo.png" alt="" class="logo" /></a>
+		<div id="menu-toggle">
+			<div class="line line1"></div>
+			<div class="line line2"></div>
+			<div class="line line3"></div>
+		</div>
+		<div class="items-container" id="sidebar">
+			<ul>
+				<li><a class="item" th:href="@{times}">TIMES</a></li>
+				<li><a class="item" th:href="@{tecnicos}">TECNICOS</a></li>
+				<li><a class="item" th:href="@{jogadores}">JOGADORES</a></li>
+				<li><a class="item" th:href="@{apostas}">APOSTAS</a></li>
+				<li><a th:href="@{logout}" class="logout-button">LOGOUT</a></li>
+				<li>
+					<ul id="mobile-icons">
+						<li><a href="#"><img src="/img/svg/facebook.svg" class="icon" alt=""></a></li>
+						<li><a href="#"><img src="/img/svg/instagram.svg" class="icon" alt=""></a></li>
+						<li><a href="#"><img src="/img/svg/twitter.svg" class="icon" alt=""></a></li>
+						<li><a href="#"><img src="/src/svg/youtube.svg" class="icon" alt=""></a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</header>
+
+
+	<!-- Rodapé  -->
+	<footer th:fragment="rodape">
+		<ul>
+			<li><a href="#"><img src="/svg/facebook.svg" class="icon" alt=""></a></li>
+			<li><a href="#"><img src="/svg/instagram.svg" class="icon" alt=""></a></li>
+			<li><a href="#"><img src="/svg/twitter.svg" class="icon" alt=""></a></li>
+			<li><a href="#"><img src="/svg/youtube.svg" class="icon" alt=""></a></li>
+		</ul>
+	</footer>
+
+</body>
+</html>

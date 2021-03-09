@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="/css/index.css">
+
+<!--Material icons-->
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+<!--Fonts-->
+<title>Futeboleiros | Add Time</title>
+</head>
+<body>
+
+	<!-- Fragment Background -->
+	<div th:replace="fragmentos/fragmentos :: background"></div>
+	<section>
+		<!-- Fragment Header -->
+		<div th:replace="fragmentos/fragmentos :: cabecalho-home"></div>
+
+		<div class="container">
+
+			<h3>Adicionar Jogador</h3>
+			<br>
+			<form action="/addTime" method="post" th:object="${time}">
+
+				<input type="hidden" th:field="*{id}">
+
+
+				<div class="row">
+					<div class="col-md-12 form-group offset-md-3">
+						<label>Nome</label> <input type="text" class="form-control" placeholder="Nome da Equipe" th:field="*{nome}">
+						
+						<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('nome')}" style="padding: 5px; margin-top: 10px;">
+							<label class="" th:errors="*{nome}"></label>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-12 form-group offset-md-3">
+						<label>Estado</label>
+						<select th:field="*{uf}">
+							<option th:each="uf : ${AllUfs}" th:value="${uf}" th:text="${uf}"></option>
+						</select>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-12 form-group offset-md-3">
+						<label>Técnico</label>
+						<select th:field="*{tecnico}">
+							<option th:each="tec : ${AllTecnicos}" th:value="${tec.id}" th:text="${tec.nome}"></option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-12 form-group offset-md-3">
+						<button class="btn btn-primary" type="submit">Salvar
+							Time</button>
+					</div>
+				</div>
+
+			</form>
+		</div>
+		<!-- Fragment Footer -->
+		<div th:replace="fragmentos/fragmentos :: rodape"></div>
+
+	</section>
+	<script src="/js/main.js"></script>
+	<script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+
+</body>
+</html>

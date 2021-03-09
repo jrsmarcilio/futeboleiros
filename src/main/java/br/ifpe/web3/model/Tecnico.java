@@ -17,20 +17,27 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 @Table(name = "tecnico")
 @Entity
 public class Tecnico {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
+	/* DADOS DO TECNICO */
+	
+	@Id	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
 	@NotBlank(message = "O campo nome deve ser preenchido")
 	private String nome;
+	
 	@DateTimeFormat(iso = ISO.DATE)
 	private LocalDate dataNascimento;
+	
 	@Column(precision = 10, scale = 2)
 	private double salario;
 
 	@OneToOne(mappedBy = "tecnico")
-	private Usuario usuario;
-
+	private Time time;
+	
+	
+	/* GETTER E SETTERS */
+	
 	public Integer getId() {
 		return id;
 	}
@@ -61,6 +68,14 @@ public class Tecnico {
 
 	public void setSalario(double salario) {
 		this.salario = salario;
+	}
+	
+	public Time getTime() {
+		return time;
+	}
+
+	public void setTime(Time time) {
+		this.time = time;
 	}
 
 	public Tecnico() {

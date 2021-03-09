@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="/css/index.css">
+
+<!--Material icons-->
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+<!--Fonts-->
+<title>Futeboleiros | Add Jogadores</title>
+</head>
+<body>
+
+	<!-- Fragment Background -->
+	<div th:replace="fragmentos/fragmentos :: background"></div>
+	<section>
+		<!-- Fragment Header -->
+		<div th:replace="fragmentos/fragmentos :: cabecalho-home"></div>
+
+		<div class="container">
+
+			<h3>Adicionar Jogador</h3>
+			<br>
+			<form action="/addJogador" method="post" th:object="${jogador}">
+
+				<input type="hidden" th:field="*{id}">
+
+
+				<div class="row">
+					<div class="col-md-12 form-group offset-md-3">
+						<label>Nome</label> <input type="text" class="form-control"
+							placeholder="Nome do Jogador" th:field="*{nome}">
+						<div class="alert alert-danger" role="alert"
+							th:if="${#fields.hasErrors('nome')}"
+							style="padding: 5px; margin-top: 10px;">
+							<label class="" th:errors="*{nome}"></label>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-12 form-group offset-md-3">
+						<label>Posição</label> <input type="text" class="form-control"
+							placeholder="Posição do Jogador" th:field="*{posicao}">
+						<div class="alert alert-danger" role="alert"
+							th:if="${#fields.hasErrors('posicao')}"
+							style="padding: 5px; margin-top: 10px;">
+							<label class="" th:errors="*{posicao}"></label>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-12 form-group offset-md-3">
+						<label>Data de Nascimento</label> <input type="date"
+							class="form-control" th:field="*{dataNascimento}">
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-12 form-group offset-md-3">
+						<label>Salário</label> <input type="number" class="form-control"
+							th:field="*{salario}">
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-12 form-group offset-md-3">
+						<label>Times</label> <select th:field="*{time}">
+							<option th:each="t : ${AllTimes}" th:value="${t.id}" th:text="${t.nome}"></option>
+						</select>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-12 form-group offset-md-3">
+						<label>Gols</label> <input type="number" class="form-control"
+							th:field="*{gols}">
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-12 form-group offset-md-3">
+						<button class="btn btn-primary" type="submit">Salvar
+							Jogador</button>
+					</div>
+				</div>
+
+			</form>
+		</div>
+		<!-- Fragment Footer -->
+		<div th:replace="fragmentos/fragmentos :: rodape"></div>
+
+	</section>
+	<script src="/js/main.js"></script>
+	<script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+
+</body>
+</html>

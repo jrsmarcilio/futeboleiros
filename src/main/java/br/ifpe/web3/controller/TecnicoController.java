@@ -1,10 +1,16 @@
 package br.ifpe.web3.controller;
 
+import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import br.ifpe.web3.dados.TecnicoDAO;
 import br.ifpe.web3.model.Tecnico;
@@ -15,34 +21,59 @@ public class TecnicoController {
 	@Autowired
 	private TecnicoDAO tecnicoDAO;
 
-	@PostMapping("/save_tecnico")
-	public String saveTecnico(Tecnico tecnico) {
-		this.tecnicoDAO.save(tecnico);
-
-		return "redirect:/";
+	@GetMapping("tecnicos")
+	public ModelAndView Tecnico() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("Tecnicos/tecnicos");
+		mv.addObject("ListagemTecnicos", this.tecnicoDAO.findAll(Sort.by("nome")));
+		return mv;
 	}
 
-	@GetMapping("/edit_tecnico")
-	public String editarTecnico(Model model, Integer id) {
+	@GetMapping("add-tecnico")
+	public ModelAndView AdicionarTecnico() {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("tecnico", new Tecnico());
+		mv.setViewName("Tecnicos/addTecnico");
+		return mv;
+	}
+	
+	@PostMapping("addTecnico")
+	public ModelAndView AdicionarTecnico(@Valid Tecnico tecnico, BindingResult br) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("tecnico", new Tecnico());
+
+		if (br.hasErrors()) {
+			mv.setViewName("Tecnico/add-tecnico");
+		} else {
+			this.tecnicoDAO.save(tecnico);
+			mv.setViewName("redirect:tecnicos");
+		}
+		return mv;
+	}
+
+	@PostMapping("pesquisarTecnico")
+	public ModelAndView PesquisarTecnico(String nome) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("Tecnicos/tecnicos");
+		List<Tecnico> pesquisaTecnicos = this.tecnicoDAO.findByNamedQuery(nome);
+		mv.addObject("pesquisaTecnicos", pesquisaTecnicos);
+		return mv;
+	}
+
+	@GetMapping("alterar_tec")
+	public ModelAndView AlterarTecnico(Integer id) {
+		ModelAndView mv = new ModelAndView();
 		Tecnico tec = this.tecnicoDAO.getOne(id);
-		model.addAttribute("tecnico", tec);
-		model.addAttribute("mensagem", null);
-		return "tecnico";
+		mv.addObject("tecnico", tec);
+		mv.setViewName("Tecnicos/addTecnico");
+		return mv;
 	}
-	
-	@GetMapping("/del_tecnico")
-	public String deletarTecnico(Integer id) {
-		this.tecnicoDAO.deleteById(id);
-		return "redirect:/";
-	}
-	
-	@GetMapping("/tecnico")
-	public String pagTecnico(Model model) {
-		Tecnico tecnico = new Tecnico();
-		model.addAttribute("tecnico", tecnico);
 
-		return "tecnico";
+	@GetMapping("/deletar_tec")
+	public ModelAndView DeletarTecnico(Integer id) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("Tecnicos/tecnicos");
+		this.tecnicoDAO.deleteById(id);
+		return mv;
 	}
-	
-	
 }

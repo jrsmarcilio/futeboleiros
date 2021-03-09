@@ -18,7 +18,7 @@ public class LoginController {
 	@Autowired
 	private UsuarioDAO usuarioDAO;
 
-	@GetMapping("/")
+	@GetMapping("/teste")
 	public String telaInicial(Usuario usuario) {
 		return "pagInicial";
 	}
@@ -26,7 +26,7 @@ public class LoginController {
 	@PostMapping("/efetuar_login")
 	public String efetuarLogin(Usuario usuario, RedirectAttributes ra, HttpSession session, Model model) {
 
-		usuario = this.usuarioDAO.findByLoginAndSenha(usuario.getLogin(), usuario.getSenha());
+		usuario = this.usuarioDAO.findByUsernameAndSenha(usuario.getUsername(), usuario.getSenha());
 
 		if (usuario != null) {
 			session.setAttribute("usuarioLogado", usuario);
@@ -37,16 +37,6 @@ public class LoginController {
 			ra.addFlashAttribute("mensagem", "Login ou Senha inválidos");
 			return "redirect:/login";
 		}
-	}
-
-	@GetMapping("/login")
-	public String telaLogin() {
-		return "login";
-	}
-
-	@GetMapping("/apostas")
-	public String telaAposta() {
-		return "apostas";
 	}
 
 }

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/css/home.css">
+
+<!--Material icons-->
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+<!--Fonts-->
+<title>Futeboleiros | Home</title>
+</head>
+<body>
+
+	<!-- Fragment Background -->
+	<div th:replace="fragmentos/fragmentos :: background"></div>
+	<section>
+		<!-- Fragment Header -->
+		<div th:replace="fragmentos/fragmentos :: cabecalho-home"></div>
+
+		<div class="container-fluid table">
+
+			<h2>Tabela</h2>
+			<hr>
+			<table class="table table-sm" style="background-color: #fff;">
+				<thead>
+					<tr>
+						<th scope="col">Classificação</th>
+						<th scope="col">Nome</th>
+						<th scope="col">Pontos</th>
+						<th scope="col">Jogos</th>
+						<th scope="col">Vitória</th>
+						<th scope="col">Empates</th>
+						<th scope="col">Derrotas</th>
+						<th scope="col">Saldo/Gol</th>
+						<th scope="col">Técnico</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="time : ${AllTimes}">
+						<td th:text="${time.id}"></td>
+						<td th:text="${time.nome}"></td>
+						<td th:text="${time.pontos}"></td>
+						<td th:text="${time.jogos}"></td>
+						<td th:text="${time.vitoria}"></td>
+						<td th:text="${time.empate}"></td>
+						<td th:text="${time.derrota}"></td>
+						<td th:text="${time.saldoGol}"></td>
+						<td th:text="${time.tecnico.id}"></td>
+					</tr>
+				</tbody>
+			</table>
+			<hr>
+
+			<h2>Jogadores</h2>
+			<hr>
+			<table class="table table-sm" style="background-color: #fff;">
+				<thead>
+					<tr>
+						<th scope="col">Ranking</th>
+						<th scope="col">Nome</th>
+						<th scope="col">Posição</th>
+						<th scope="col">Gols</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="jog : ${ListagemJogadores}">
+						<td th:text="${jog.id}"></td>
+						<td th:text="${jog.nome}"></td>
+						<td th:text="${jog.posicao}"></td>
+						<td th:text="${jog.gols}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<!-- Fragment Footer -->
+		<div th:replace="fragmentos/fragmentos :: rodape"></div>
+
+	</section>
+	<script src="/webjars/jquery/3.0.0/jquery.min.js"></script>
+	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/scripts/menu.js"></script>
+</body>
+</html>
